@@ -1,0 +1,71 @@
+#include <iostream>
+#include <cmath>
+#include "complex.hpp"
+
+class complex
+{
+public:
+    double real;
+    double imag;
+
+    void print();
+
+    void set(double realValue, double imagValue);
+
+    double magnitude();
+};
+
+void complex::print()
+{
+    std::cout << "Re: " << real << ", Im: " << imag << std::endl;
+}
+
+void complex::set(double realValue, double imagValue)
+{
+    real = realValue;
+    imag = imagValue;
+}
+
+double complex::magnitude()
+{
+    return std::sqrt(real * real + imag * imag);
+}
+
+complex difference(complex a, complex b)
+{
+    complex result;
+
+    result.set(a.real - b.real, a.imag - b.real);
+
+    return result;
+}
+
+int main()
+{
+    cie::complex c1, c2;
+    c1.set(3.2, 6.1);
+    c2.set(2.1, 0.5);
+    /*
+	c1.real = 3.2;
+	c1.imag = 6.1;
+
+	c2.real = 2.1;
+	c2.imag = 0.5;
+	*/
+
+    /*
+	complex d;
+	d.real = c2.real - c1.real;
+	d.imag = c2.imag - c2.real;
+	*/
+    cie::complex d = cie::difference(c2, c1);
+
+    //std::cout << "Re: " << d.real << ", Im: " << d.imag << std::endl;
+    d.print();
+
+    double t = d.magnitude();
+    //double magnitude = std::sqrt(d.real * d.real + d.imag * d.imag);
+
+    //std::cout << "Magnitude of difference = " << magnitude << std::endl;
+    std::cout << "Magnitude of difference = " << t << std::endl;
+}
